@@ -1,0 +1,25 @@
+﻿@model MgrWebSite.Models.RoverCar
+@{
+    ViewBag.Title = Model.DisplayText;
+}
+
+<h2>@Model.DisplayText</h2>
+<h4>@Model.Description</h4>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="well">
+            <h5><label>Car model: </label> @Model.Model</h5>
+            <h5><label>Fuel type: </label> @Model.FuelType</h5>
+            <h5><label>Engine Size: </label> @Model.EngineSize Liter</h5>
+            <h5><label>Production Sarts: </label> @Model.ProductionStartPeriod</h5>
+            <h5><label>Segment: </label> @Model.Segment</h5>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <img src="/Images/@Model.ImagePath"
+             alt="@Model.DisplayText" class="img-responsive" />
+    </div>
+    <div><h4>@Html.Raw(Model.DevelopmentHistoryHtml)</h4></div>
+</div>

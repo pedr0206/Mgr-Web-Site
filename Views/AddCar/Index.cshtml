@@ -1,0 +1,99 @@
+﻿@model MgrWebSite.Models.RoverCar
+@{
+    ViewData["Title"] = "AddCar";
+}
+
+<h2>AddCar</h2>
+
+<form action="/AddCar/Add" method="post">
+
+    <h1>Add new car</h1>
+
+    <fieldset>
+
+        <legend><span class="number">1</span> Car info</legend>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Model, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FuelType, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.FuelType, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.EngineSize, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.EngineSize, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ProductionStartPeriod, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.ProductionStartPeriod, "{0:d}", new { @Class = "form-control-datepicker" })
+        </div>
+
+        <div>
+            <label>Fuely type:</label>
+            <input type="radio" id="petrol" value="petrol" name="fuel_type">
+            <label for="petrol" class="light">Petrol</label>
+            <br>
+            <input type="radio" id="diesel" value="diesel" name="fuel_type">
+            <label for="diesel" class="light">Diesel</label>
+        </div>
+
+
+    </fieldset>
+    <fieldset>
+
+        <legend><span class="number">2</span> Your profile</legend>
+
+        <label for="comment">Comments:</label>
+        <textarea id="comment" name="user_comments"></textarea>
+
+        <label for="job">Job role:</label>
+        <select id="job" name="user_job">
+            <optgroup label="Web">
+                <option value="frontend_developer"> Front-End Developer</option>
+                <option value="php_developer">PHP Developer</option>
+                <option value="python_developer">Python Developer</option>
+                <option value="web_designer">Web Designer</option>
+                <option value="wordpress_developer">Wordpress Developer</option>
+                <option value="rails_developer">Ruby-on-Rails Developer</option>
+            </optgroup>
+            <optgroup label="Mobile">
+                <option value="android_developer">Android Developer</option>
+                <option value="ios_developer">Ios Developer</option>
+                <option value="mobile_designer">Mobile Designer</option>
+            </optgroup>
+
+            <optgroup label="Business">
+                <option value="business_owner">Business Owner</option>
+                <option value="freelancer">FreeLancer</option>
+            </optgroup>
+
+        </select>
+        <label>Interests:</label>
+        <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="design">Development</label><br>
+        <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="development">Design</label><br>
+        <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+
+
+    </fieldset>
+
+    <div class="col-md-12">
+        <div class="pad-top">
+            <button type="submit" class="btn btn-success btn-lg margin-right">
+                <span class="glyphicon glyphicon-save"></span> Save
+            </button>
+            <a href="@Url.Action("../ShowRoverCars/Index")" class="btn btn-warning btn-lg">
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+            </a>
+        </div>
+    </div>
+
+</form>

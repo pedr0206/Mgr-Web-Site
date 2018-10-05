@@ -1,0 +1,154 @@
+﻿@model IEnumerable<MgrWebSite.Models.RoverCar>
+@{
+    ViewBag.Title = "Rover Cars";
+}
+<h2>@ViewBag.Title</h2>
+
+<img src="~/images/rover.jpg"
+     alt="Rover grill"
+     class="img-responsive"
+     style="width:200px;height:250px" />
+<h5>Small description of the brand</h5>
+
+<div class="row">
+    @foreach (MgrWebSite.Models.RoverCar roverCar in Model)
+    {
+        <div class="col-md-3">
+            <h4>@Html.ActionLink(roverCar.Model, "Detail", new { id = roverCar.Id })</h4>
+
+            <a href="@Url.Action("Detail", new { id = roverCar.Id })">
+                <img src="/Images/@roverCar.ImagePath"
+                     alt="@roverCar.DisplayText"
+                     class="img-responsive" />
+            </a>
+        </div>
+    }
+
+</div>
+
+
+<h3>History</h3>
+
+<h4>
+    The Rover Company Limited was a British car manufacturing company that operated from its base in Solihull in Warwickshire. Its lasting reputation for quality and performance was such that its first postwar model reviewed by Road & Track in 1952 was pronounced finer than any but a Rolls-Royce. Rover also manufactured the Land-Rover from 1948 onwards, which went on to become its most successful and profitable product — with Land Rover eventually becoming a separate brand in its own right.
+
+    Rover was sold to Leyland Motors in 1967, who had already acquired Standard-Triumph seven years earlier. Initially, Rover maintained a level of autonomy within the Leyland conglomerate, but by 1978, Leyland - by then British Leyland (BL) - had run into severe financial difficulties and had been nationalized by the British Government. Most of the assets of the former Rover Company were moved into a new subsidiary named Land Rover Ltd whilst the Rover marque itself continued to be used on other BL products which relied largely on Honda engineering. Rover ultimately became the most prolific brand within BL and gave its name to the entire conglomerate in the form of the Rover Group in 1986, of which Land Rover remained a part until the Rover Group was broken up by BMW in 2000.
+
+    Today, the Rover marque is dormant, and is currently owned by the Rover Company's de facto successor - Jaguar Land Rover, which still operates out of Rover's Solihull plant.
+</h4>
+
+<h3>List of models </h3>
+
+<table style="width:100%">
+    <tr>
+        <th>Model</th>
+        <th>FuelType</th>
+        <th>EngineSize</th>
+        <th>ProductionPeriod</th>
+        <th>AssemblyPlant</th>
+        <th>Segment</th>
+    </tr>
+    @foreach (MgrWebSite.Models.RoverCar roverCar in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(roverCar.Model, "Detail", new { id = roverCar.Id })</td>
+            <td>@roverCar.FuelType</td>
+            <td>@roverCar.EngineSize</td>
+            <td>@roverCar.ProductionStartPeriod</td>
+            <td>@roverCar.AssemblyPlant</td>
+            <td>@roverCar.Segment</td>
+        </tr>
+    }
+</table>
+Show Cars from assembly plant:
+<form action="/ShowRoverCars/Index" method="post">
+    <input type="text" name="productionPlant" />
+    <input type="submit" value="Search" />
+</form>
+@*
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+        <form action="index.html" method="post">
+
+            <h1>Add new car</h1>
+
+            <fieldset>
+
+                <legend><span class="number">1</span> Car info</legend>
+
+                    @Html.LabelFor(m => m.Model, new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.Model, new { @class = "form-control" })
+
+
+                        <label for="marque">Marque:</label>
+                        <input type="text" id="marque" name="car_marque">
+
+                        <label for="model">Model:</label>
+                        <input type="text" id="model" name="car_model">
+
+                        <label for="equipment">Equipment level:</label>
+                        <input type="text" id="equipment" mame="car_equipment">
+
+                        <label>Fuely type:</label>
+                        <input type="radio" id="petrol" value="petrol" name="fuel_type">
+                        <label for="petrol" class="light">Petrol</label>
+                        <br>
+                        <input type="radio" id="diesel" value="diesel" name="fuel_type">
+                        <label for="diesel" class="light">Diesel</label>
+
+            </fieldset>
+            <fieldset>
+
+                <legend><span class="number">2</span> Your profile</legend>
+
+                <label for="comment">Comments:</label>
+                <textarea id="comment" name="user_comments"></textarea>
+
+                <label for="job">Job role:</label>
+                <select id="job" name="user_job">
+                    <optgroup label="Web">
+                        <option value="frontend_developer"> Front-End Developer</option>
+                        <option value="php_developer">PHP Developer</option>
+                        <option value="python_developer">Python Developer</option>
+                        <option value="web_designer">Web Designer</option>
+                        <option value="wordpress_developer">Wordpress Developer</option>
+                        <option value="rails_developer">Ruby-on-Rails Developer</option>
+                    </optgroup>
+                    <optgroup label="Mobile">
+                        <option value="android_developer">Android Developer</option>
+                        <option value="ios_developer">Ios Developer</option>
+                        <option value="mobile_designer">Mobile Designer</option>
+                    </optgroup>
+
+                    <optgroup label="Business">
+                        <option value="business_owner">Business Owner</option>
+                        <option value="freelancer">FreeLancer</option>
+                    </optgroup>
+
+                </select>
+                <label>Interests:</label>
+                <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="design">Development</label><br>
+                <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="development">Design</label><br>
+                <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+
+
+            </fieldset>
+
+            <button type="submit"> Sign up</button>
+
+        </form>
+
+    </body>
+    </html>
+
+*@
